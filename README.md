@@ -28,5 +28,5 @@ https://nrealize6078-hue.github.io/realizeos-100years-lp/ （GitHub Pages・検�
 - 参照パスを相対パス化（`/100-years/styles.css` → `styles.css` など）
 - `canonical` / `og:url` を Pages の URL に変更
 - ヘッダー・フッターの採用トップへのリンク（`/`・`/#jobs`・`/#gym`）は、
-  複製したのがこの1ページだけなので、元サイトの絶対URLに向けている。
-  採用トップも複製した場合は相対パスに戻すこと。
+  別リポジトリで公開している採用トップ（`nrealize6078-hue/realizeos-careers-lp`）の絶対URLに向けている。
+  将来2ページを1リポジトリにまとめる場合は相対パスに戻すこと。
