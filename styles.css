@@ -25,3 +25,10 @@
 /* CTAボタンの語中改行を防ぐ（文節単位でのみ折り返す） */
 .button>span.button-label{font-size:inherit;flex-shrink:1}
 .button-label>span{display:inline-block}
+
+/* 文節改行（2026-10-03）: スマホ幅だけ文節を塊にして語の途中で折り返さない */
+w-b,w-l{display:inline}@media(max-width:800px){w-b{display:inline-block}}
+/* 見出しの改行を<br>の位置にそろえる（値は _apply_fit.py） */
+@media(max-width:560px){[data-fit]{font-size:min(var(--fit-cap),var(--fit))!important}}
+/* スマホで家族3人が画面の端で切れないように */
+@media(max-width:800px){.hero-image img{object-position:94% bottom}}
