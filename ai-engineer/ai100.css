@@ -1,0 +1,103 @@
+/* AIエンジニア募集ページ（100年後版）だけの追加（2026年10月3日）
+   future-careers/ai-engineer と同じ考え方（募集ラベル・矢印の動き・入口カード・表示アニメーション）を
+   このページの紺×金の配色に合わせたもの。 */
+:root{--ai-ease:cubic-bezier(0,.4,.25,1);--ai-dur:.6s}
+
+/* ── ファーストビューの募集ラベル ── */
+.hero-recruit{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 .55em;margin:0 0 18px;font-size:clamp(20px,2vw,28px);font-weight:800;line-height:1.5;letter-spacing:.04em;color:var(--text)}
+.hero-recruit-tag{color:var(--gold)}
+@media(max-width:680px){.hero-recruit{font-size:19px;margin-bottom:16px}}
+
+/* ── 矢印（↗ ↓ ↑）がホバーで抜けて戻る ── */
+.ai-g{display:inline-block}
+@keyframes ai-ne{0%{transform:none}45%{transform:translate(7px,-7px);opacity:0}46%{transform:translate(-7px,7px);opacity:0}100%{transform:none;opacity:1}}
+@keyframes ai-down{0%{transform:none}45%{transform:translateY(8px);opacity:0}46%{transform:translateY(-8px);opacity:0}100%{transform:none;opacity:1}}
+@keyframes ai-up{0%{transform:none}45%{transform:translateY(-8px);opacity:0}46%{transform:translateY(8px);opacity:0}100%{transform:none;opacity:1}}
+@media(any-hover:hover){
+  a:hover>.ai-g-ne,summary:hover>.ai-g-ne{animation:ai-ne var(--ai-dur) var(--ai-ease) both}
+  a:hover>.ai-g-down{animation:ai-down var(--ai-dur) var(--ai-ease) both}
+  a:hover>.ai-g-up{animation:ai-up var(--ai-dur) var(--ai-ease) both}
+  .button{transition:background-color .3s,color .3s,transform .3s var(--ai-ease),box-shadow .3s}
+  .button:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.28)}
+  .gym-evidence-grid figure{overflow:hidden}
+  .gym-evidence-grid figure img{transition:transform 1s var(--ai-ease)}
+  .gym-evidence-grid figure:hover img{transform:scale(1.04)}
+  .role{transition:border-color .3s}
+  .role:hover{border-color:#8a7656}
+}
+
+/* ── 仕事紹介（2枚） ── */
+.role-intro p{color:var(--muted)}
+
+/* ── 募集要項 ── */
+.ai-recruit h2{font-family:var(--serif);font-size:clamp(1.8rem,3.2vw,2.75rem);font-weight:600;line-height:1.7}
+.ai-recruit-list{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;margin:44px 0 0;border-top:1px solid var(--line)}
+.ai-recruit-list>div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+.ai-recruit-list dt{font-size:.875rem;font-weight:700;color:var(--gold)}
+.ai-recruit-list dd{margin:0;font-size:1rem;line-height:1.9;color:var(--text)}
+.ai-recruit-list dd small{font-size:.8125rem;color:var(--muted)}
+.ai-recruit-list a{color:var(--gold)}
+.ai-recruit-entry{display:flex;flex-wrap:wrap;gap:16px;margin-top:36px}
+.ai-recruit-entry .button{margin-top:0;background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.ai-recruit-entry .button+.button{background:transparent;color:var(--gold)}
+@media(max-width:900px){.ai-recruit-list{grid-template-columns:1fr}}
+@media(max-width:560px){.ai-recruit-list>div{grid-template-columns:1fr;gap:4px;padding:16px 0}.ai-recruit-list dd{font-size:.9375rem}.ai-recruit-entry{flex-direction:column}.ai-recruit-entry .button{max-width:none}}
+
+/* ── 会社情報（フッター内） ── */
+.footer-company{flex:1 0 100%;order:9;display:flex;align-items:baseline;gap:8px 40px;margin-top:6px;padding-top:24px;border-top:1px solid var(--line)}
+.footer-company-title{flex:none;font-size:.8125rem;font-weight:700;color:var(--text)}
+.footer-company dl{display:flex;flex-wrap:wrap;gap:12px 44px;margin:0}
+.footer-company dl>div{display:block}
+.footer-company dt{font-size:.75rem;color:var(--muted)}
+.footer-company dd{margin:2px 0 0;font-size:.8125rem;line-height:1.7;color:var(--text)}
+.footer-company .nw{white-space:nowrap}
+.footer-company a{color:var(--gold)}
+.footer{flex-wrap:wrap}
+@media(max-width:680px){.footer-company{display:block;order:9;padding-top:20px}.footer-company dl{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}}
+
+/* ── 右下の入口カード（正社員／インターン） ── */
+.ai-entry{position:fixed;right:20px;bottom:20px;z-index:40;display:grid;gap:10px;width:330px;
+  opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity var(--ai-dur) var(--ai-ease),transform var(--ai-dur) var(--ai-ease)}
+.ai-entry.is-visible{opacity:1;transform:none;pointer-events:auto}
+.ai-entry a{position:relative;display:flex;align-items:center;gap:14px;min-height:64px;padding:0 44px 0 0;overflow:hidden;border:1px solid #3b4955;border-radius:4px;background:#101e2a;color:var(--text);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.ai-entry-thumb{flex:none;width:120px;height:64px;overflow:hidden}
+.ai-entry-thumb img{width:100%;height:100%;object-fit:cover;transition:transform var(--ai-dur) var(--ai-ease)}
+.ai-entry-label{display:grid;line-height:1.35}
+.ai-entry-label b{font:700 14px/1.3 Arial,sans-serif;letter-spacing:.08em;color:var(--gold)}
+.ai-entry-label small{font-size:12px;font-weight:700}
+.ai-entry .ai-g{position:absolute;right:16px;top:50%;margin-top:-.7em;color:var(--gold);font-size:1.1rem;line-height:1.4}
+.ai-sp{display:none}
+@media(any-hover:hover){.ai-entry a:hover{border-color:var(--gold)}.ai-entry a:hover .ai-entry-thumb img{transform:scale(1.06)}}
+@media(max-width:680px){
+  .ai-entry{left:0;right:0;bottom:0;width:auto;grid-template-columns:1fr 1fr;gap:0;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:rgba(11,20,30,.96);border-top:1px solid var(--line)}
+  .ai-entry a{min-height:52px;padding:0 28px 0 12px;margin:0 4px;box-shadow:none;background:var(--gold);color:var(--bg);border-color:var(--gold)}
+  .ai-entry a+a{background:transparent;color:var(--gold)}
+  .ai-entry-thumb{display:none}
+  .ai-entry-label b{color:inherit;opacity:.75;font-size:11px}
+  .ai-entry-label small{font-size:13px;white-space:nowrap}
+  .ai-entry .ai-g{right:10px;color:inherit}
+  .ai-pc{display:none}.ai-sp{display:inline}
+  .footer{padding-bottom:96px}
+}
+
+/* ── 表示アニメーション ── */
+.ai-anim .hero-content>*{opacity:0;transform:translateY(22px);animation:ai-rise .9s var(--ai-ease) forwards}
+.ai-anim .hero-content>*:nth-child(1){animation-delay:.15s}
+.ai-anim .hero-content>*:nth-child(2){animation-delay:.3s}
+.ai-anim .hero-content>*:nth-child(3){animation-delay:.45s}
+.ai-anim .hero-content>*:nth-child(4){animation-delay:.65s}
+.ai-anim .hero-content>*:nth-child(5){animation-delay:.8s}
+.ai-anim .hero-content>*:nth-child(6){animation-delay:.95s}
+.ai-anim .hero-image img{animation:ai-zoom 2.2s var(--ai-ease) both}
+@keyframes ai-rise{to{opacity:1;transform:none}}
+@keyframes ai-zoom{from{transform:scale(1.08)}to{transform:none}}
+.ai-anim [data-ai-r]{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ai-ease),transform .9s var(--ai-ease);transition-delay:var(--ai-d,0s)}
+.ai-anim [data-ai-r].is-in{opacity:1;transform:none}
+.ai-anim figure[data-ai-r]{opacity:1;transform:none}
+.ai-anim figure[data-ai-r]>img{clip-path:inset(0 100% 0 0);transition:clip-path 1.2s var(--ai-ease),transform 1s var(--ai-ease)}
+.ai-anim figure[data-ai-r].is-in>img{clip-path:inset(0 0 0 0)}
+@media(prefers-reduced-motion:reduce){
+  .ai-anim .hero-content>*,.ai-anim .hero-image img{animation:none;opacity:1;transform:none}
+  .ai-anim [data-ai-r],.ai-anim figure[data-ai-r]>img{opacity:1;transform:none;clip-path:none;transition:none}
+  .ai-g{animation:none!important}
+}
